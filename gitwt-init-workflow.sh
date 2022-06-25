@@ -10,20 +10,21 @@ PROJECT_NAME=$1
 USER=mantainer
 WORKING_COPY=$PROJECT_NAME-$USER
 
-echo "---> [GitWT] Initializing a Git workflow to project $PROJECT_NAME..."
+echo "---> [GitWT] Initializing a Git workflow of project $PROJECT_NAME..."
 echo ""
 bash $BASEDIR/gitwt-create-project.sh $PROJECT_NAME
 bash $BASEDIR/gitwt-clone.sh $PROJECT_NAME $USER
 echo ""
 
 echo "---> [GitWT] Doing initial commits on master of project $PROJECT_NAME..."
-#touch $WORKING_COPY/main.file
+(cd $WORKING_COPY && touch main.file && git add . && git commit -m "[master] Initial commit" && git push)
+echo ""
 bash $BASEDIR/gitwt-do-commit.sh $PROJECT_NAME $USER master "m1"
 bash $BASEDIR/gitwt-do-commit.sh $PROJECT_NAME $USER master "m2"
 bash $BASEDIR/gitwt-do-commit.sh $PROJECT_NAME $USER master "m3"
 echo ""
 
-echo "---> [GitWT] Creating long-running branch develop for project $PROJECT_NAME..."
+#echo "---> [GitWT] Creating long-running branch develop for project $PROJECT_NAME..."
 bash $BASEDIR/gitwt-create-branch.sh $PROJECT_NAME $USER master develop
 echo ""
 
