@@ -23,8 +23,10 @@ bash $BASEDIR/gitwt-do-commit.sh $PROJECT_NAME $USER master "m3"
 echo "---> [GitWT] Creating long-running branch develop for project $PROJECT_NAME..."
 bash $BASEDIR/gitwt-create-branch.sh $PROJECT_NAME $USER master develop
 
-echo "---> [GitWT] Logging initial state of project $PROJECT_NAME..."
+echo "---> [GitWT] Pushing everything to origin..."
 cd $WORKING_COPY
-git checkout master
+git push --all
+
+echo "---> [GitWT] Logging initial state of project $PROJECT_NAME..."
 git log --all --parents --oneline --graph >&1
 
