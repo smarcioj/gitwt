@@ -10,4 +10,5 @@ git clone $PROJECT_REPO $WORKING_COPY
 cd $WORKING_COPY
 git config user.name $USER
 git config user.email $USER@workflow-tester.git
+echo ""
 

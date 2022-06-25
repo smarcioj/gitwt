@@ -7,4 +7,5 @@ echo "---> [GitWT] Creating the project $PROJECT_NAME repository..."
 mkdir $PROJECT_REPO
 cd $PROJECT_REPO
 git init --bare
+echo ""
 

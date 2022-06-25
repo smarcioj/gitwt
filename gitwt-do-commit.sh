@@ -13,4 +13,5 @@ git checkout $BRANCH
 echo "$CONTENT" >> main.file
 git add .
 git commit -m "$LOG"
+echo ""
 

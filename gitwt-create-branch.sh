@@ -11,4 +11,5 @@ echo "---> [GitWT] Creating branch $BRANCH from $BRANCH_FROM on project $PROJECT
 cd $WORKING_COPY
 git checkout $BRANCH_FROM
 git checkout -b $BRANCH
+echo ""
 
