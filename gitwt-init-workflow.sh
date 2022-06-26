@@ -17,7 +17,7 @@ bash $BASEDIR/gitwt-clone.sh $PROJECT_NAME $USER
 echo ""
 
 echo "---> [GitWT] Doing initial commits on master of project $PROJECT_NAME..."
-(cd $WORKING_COPY && touch main.file && git add . && git commit -m "[master] Initial commit" && git push)
+(cd $WORKING_COPY && mkdir feature && touch feature/feature.file && touch master.file && git add . && git commit -m "[master] Initial commit" && git push)
 echo ""
 bash $BASEDIR/gitwt-do-commit.sh $PROJECT_NAME $USER master "m1"
 bash $BASEDIR/gitwt-do-commit.sh $PROJECT_NAME $USER master "m2"
