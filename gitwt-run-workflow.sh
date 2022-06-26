@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 set -o nounset   # Exit if undefined variable is used.
 set -o errexit   # Exit after first command failure.
@@ -8,46 +8,36 @@ BASEDIR=$(dirname $0)
 
 PROJECT_NAME=$1
 
+echo "---> [GitWT] Running a full workflow of project $PROJECT_NAME..."
+echo ""
 #echo "---> [GitWT] Initializing a Git workflow of project $PROJECT_NAME..."
 bash $BASEDIR/gitwt-init-workflow.sh $PROJECT_NAME
 
-#--------------
-USER=developer1
-echo "---> [GitWT] Cloning project $PROJECT_NAME repository to $USER work with..."
-bash $BASEDIR/gitwt-clone.sh $PROJECT_NAME $USER
+SPRINT=1
+echo "---> [GitWT] Running sprint $SPRINT of the project $PROJECT_NAME..."
+bash $BASEDIR/gitwt-run-sprint.sh $PROJECT_NAME $SPRINT
 
-FEATURE=f1
-echo "---> [GitWT] Creating and working with feature $FEATURE by $USER..."
-bash $BASEDIR/gitwt-create-branch.sh $PROJECT_NAME $USER develop feature/$FEATURE
-bash $BASEDIR/gitwt-do-commit.sh $PROJECT_NAME $USER feature/$FEATURE "$FEATURE-1"
-bash $BASEDIR/gitwt-do-commit.sh $PROJECT_NAME $USER feature/$FEATURE "$FEATURE-2"
+SPRINT=2
+echo "---> [GitWT] Running sprint $SPRINT of the project $PROJECT_NAME..."
+bash $BASEDIR/gitwt-run-sprint.sh $PROJECT_NAME $SPRINT
 
-#--------------
-USER=developer2
-echo "---> [GitWT] Cloning project $PROJECT_NAME repository to $USER work with..."
-bash $BASEDIR/gitwt-clone.sh $PROJECT_NAME $USER
+# Do a release
 
-FEATURE=f2
-echo "---> [GitWT] Creating and working with feature $FEATURE by $USER..."
-bash $BASEDIR/gitwt-create-branch.sh $PROJECT_NAME $USER develop feature/$FEATURE
-bash $BASEDIR/gitwt-do-commit.sh $PROJECT_NAME $USER feature/$FEATURE "$FEATURE-1"
-bash $BASEDIR/gitwt-do-commit.sh $PROJECT_NAME $USER feature/$FEATURE "$FEATURE-2"
-bash $BASEDIR/gitwt-do-commit.sh $PROJECT_NAME $USER feature/$FEATURE "$FEATURE-3"
+# Fix a bugfix
 
-#--------------
-USER=developer1
-FEATURE=f1
-echo "---> [GitWT] Working with feature $FEATURE by $USER..."
-bash $BASEDIR/gitwt-do-commit.sh $PROJECT_NAME $USER feature/$FEATURE "$FEATURE-3"
+# Publish
 
-#--------------
-USER=developer2
-FEATURE=f2
-echo "---> [GitWT] Working with feature $FEATURE by $USER..."
-bash $BASEDIR/gitwt-do-commit.sh $PROJECT_NAME $USER feature/$FEATURE "$FEATURE-4"
-bash $BASEDIR/gitwt-do-commit.sh $PROJECT_NAME $USER feature/$FEATURE "$FEATURE-5"
+SPRINT=3
+echo "---> [GitWT] Running sprint $SPRINT of the project $PROJECT_NAME..."
+bash $BASEDIR/gitwt-run-sprint.sh $PROJECT_NAME $SPRINT
 
+# Fix a hotfix
 
+SPRINT=4
+echo "---> [GitWT] Running sprint $SPRINT of the project $PROJECT_NAME..."
+bash $BASEDIR/gitwt-run-sprint.sh $PROJECT_NAME $SPRINT
 
+# Do a release
 
+# Publish
 

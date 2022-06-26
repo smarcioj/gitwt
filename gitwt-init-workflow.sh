@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 set -o nounset   # Exit if undefined variable is used.
 set -o errexit   # Exit after first command failure.
@@ -24,8 +24,8 @@ bash $BASEDIR/gitwt-do-commit.sh $PROJECT_NAME $USER master "m2"
 bash $BASEDIR/gitwt-do-commit.sh $PROJECT_NAME $USER master "m3"
 echo ""
 
-#echo "---> [GitWT] Creating long-running branch develop for project $PROJECT_NAME..."
-bash $BASEDIR/gitwt-create-branch.sh $PROJECT_NAME $USER master develop
+echo "---> [GitWT] Creating long-running branch develop for project $PROJECT_NAME..."
+bash $BASEDIR/gitwt-checkout-create-branch.sh $PROJECT_NAME $USER master develop
 echo ""
 
 echo "---> [GitWT] Pushing everything to origin..."
