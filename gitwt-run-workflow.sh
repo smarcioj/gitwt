@@ -17,6 +17,55 @@ SPRINT=1
 echo "---> [GitWT] Running sprint $SPRINT of the project $PROJECT_NAME..."
 bash $BASEDIR/gitwt-run-sprint.sh $PROJECT_NAME $SPRINT
 
+#-----------------------------------
+# TESTANDO FINALIZACAO DA BRANCH
+# Mantainer bringing to developer (/Merging/Rebasing the work)
+#git fetch
+#git merge origin/feature/SP1-f1
+
+echo ""
+echo "=========== FEATURE REINTEGRATION ON DEVELOP ==========="
+echo ""
+
+cd $PROJECT_NAME-mantainer
+git checkout develop
+git fetch
+
+#exit 0
+
+for branch in $(git branch --remotes)
+do
+    BRANCH_NAME=$(echo "$branch" | sed "s/origin\///")
+    if [[ "$BRANCH_NAME" != "master" ]] && [[ "$BRANCH_NAME" != "develop" ]]
+    then
+        echo "---> [GitWT] Reintegrating branch $BRANCH_NAME..."
+        # Merge no fast-forward
+        #git merge $branch --no-ff -m "[$BRANCH_NAME] Merging branch on develop"
+        #git push origin --delete $BRANCH_NAME
+
+        # Merge and Squash
+        git merge $branch --squash
+        git commit -m "[$BRANCH_NAME] Merging branch on develop"
+        git push origin --delete $BRANCH_NAME
+
+        # Rebase
+        #git checkout $BRANCH_NAME
+        #git rebase develop
+        #git checkout develop
+        #git merge $BRANCH_NAME
+        #git push origin --delete $BRANCH_NAME
+        #git branch -d $BRANCH_NAME
+        echo ""
+    fi
+done
+
+git push --set-upstream origin develop
+git log --graph --abbrev-commit --decorate --first-parent --oneline
+
+#-----------------------------------
+
+exit 0
+
 SPRINT=2
 echo "---> [GitWT] Running sprint $SPRINT of the project $PROJECT_NAME..."
 bash $BASEDIR/gitwt-run-sprint.sh $PROJECT_NAME $SPRINT
