@@ -33,7 +33,3 @@ cd $WORKING_COPY
 git push --all
 echo ""
 
-echo "---> [GitWT] Logging initial state of project $PROJECT_NAME..."
-git log --all --parents --oneline --graph >&1
-echo ""
-
